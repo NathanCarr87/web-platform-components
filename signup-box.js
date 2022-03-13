@@ -55,25 +55,47 @@ class SignupBox extends HTMLElement {
   }
 
   _firebaseAuth;
-  _createFunction;
+  _createUserWithEmailAndPassword;
+  formElement;
+  emailInput;
+  passwordInput;
+
   set firebaseAuth(value) {
     this._firebaseAuth = value;
   }
 
-  set createFunction(value) {
-    console.log(value);
-    this._createFunction = value;
+  set createUserWithEmailAndPassword(value) {
+    this._createUserWithEmailAndPassword = value;
   }
 
-  formElement;
   connectedCallback() {
     this.formElement = this.shadowRoot.querySelector('form');
-    this.formElement.addEventListener('submit', this.logSubmit);
+    this.formElement.addEventListener('submit', (event) =>
+      this.logSubmit(event)
+    );
+    this.emailInput = this.shadowRoot.querySelector('input[type=email]');
+    this.passwordInput = this.shadowRoot.querySelector('input[type=password]');
   }
 
   logSubmit(event) {
     event.preventDefault();
-    console.log(event);
+    this._createUserWithEmailAndPassword(
+      this._firebaseAuth,
+      this.emailInput.value,
+      this.passwordInput.value
+    )
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(error.code);
+        console.log(error.message);
+      });
   }
 }
 window.customElements.define('signup-box', SignupBox);

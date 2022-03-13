@@ -53,10 +53,47 @@ class LoginBox extends HTMLElement {
   }
 
   _firebaseAuth;
+  _signInWithEmailAndPassword;
+  formElement;
+  emailInput;
+  passwordInput;
+
   set firebaseAuth(value) {
     this._firebaseAuth = value;
-    console.log(this._firebaseAuth);
   }
-  connectedCallback() {}
+
+  set signInWithEmailAndPassword(value) {
+    this._signInWithEmailAndPassword = value;
+  }
+  connectedCallback() {
+    this.formElement = this.shadowRoot.querySelector('form');
+    this.formElement.addEventListener('submit', (event) =>
+      this.logSubmit(event)
+    );
+
+    this.emailInput = this.shadowRoot.querySelector('input[type=email]');
+    this.passwordInput = this.shadowRoot.querySelector('input[type=password]');
+  }
+
+  logSubmit(event) {
+    event.preventDefault();
+    this._signInWithEmailAndPassword(
+      this._firebaseAuth,
+      this.emailInput.value,
+      this.passwordInput.value
+    )
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(error.code);
+        console.log(error.message);
+      });
+  }
 }
 window.customElements.define('login-box', LoginBox);
