@@ -1,17 +1,45 @@
 const monsterCardTemplate = document.createElement('template');
 monsterCardTemplate.innerHTML = `
 <style>
-
-
 .card > .card-body {
   background-color: #e7e4d1;
 }
+.card > .card-header {
+  background-color: #4a5231;
+  color: white;
+}
+.row > .card {
+  padding: 0;
+}
+
+.row > .card > .card-header{
+  background-color: #c7c6b0;
+  color: black;
+}
+
 </style>
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <div class="card">
-  <monster-card-header></monster-card-header>
+  <div class="card-header">
+    <div class="row">
+      <div class="col">
+        <div class="name"></div>
+      </div>
+      <div class="col">
+        <div class="level"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="size"></div>
+      </div>
+      <div class="col">
+        <div class="xp"><div></div></div>
+      </div>
+    </div>
+  </div>
   <div class="card-body">
     <div class="row">
       <div class="col">
@@ -38,8 +66,12 @@ monsterCardTemplate.innerHTML = `
         <div class="speed"></div>
       </div>
     </div>
+    <div class="powers">
+      
+    </div>
   </div>
 </div>
+
 `;
 
 class MonsterCard extends HTMLElement {
@@ -48,18 +80,38 @@ class MonsterCard extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.shadowRoot.appendChild(monsterCardTemplate.content.cloneNode(true));
   }
-
+  nameElement;
+  levelElement;
+  sizeElement;
+  xpElement;
   headerElement;
   initiativeElement;
   sensesElement;
   hitpointsElement;
   armorClassElement;
   speedElement;
+  powersElement;
   connectedCallback() {
-    this.headerElement = this.shadowRoot.querySelector('monster-card-header');
-    this.headerElement.elementData = exampleMonster.header;
-    console.log(this.headerElement.elementData);
+    // header
+    this.nameElement = this.shadowRoot.querySelector('.name');
+    this.nameElement.innerHTML = exampleMonster.name;
 
+    this.levelElement = this.shadowRoot.querySelector('.level');
+    this.levelElement.innerHTML = `Level ${
+      exampleMonster.level
+    } ${this.capitalizeFirstLetter(exampleMonster.role)}`;
+
+    this.sizeElement = this.shadowRoot.querySelector('.size');
+    this.sizeElement.innerHTML = `${this.capitalizeFirstLetter(
+      exampleMonster.size
+    )} ${this.capitalizeFirstLetter(
+      exampleMonster.origin
+    )} ${this.capitalizeFirstLetter(exampleMonster.type)}`;
+
+    this.xpElement = this.shadowRoot.querySelector('.xp');
+    this.xpElement.innerHTML = `XP: ${exampleMonster.experiencePoints}`;
+
+    // Body
     this.initiativeElement = this.shadowRoot.querySelector('.initiative');
     this.initiativeElement.innerHTML = `<strong>Initiative</strong> +${exampleMonster.initiative}`;
 
@@ -78,6 +130,21 @@ class MonsterCard extends HTMLElement {
 
     this.speedElement = this.shadowRoot.querySelector('.speed');
     this.speedElement.innerHTML = `<strong>Speed</strong> ${exampleMonster.speed}`;
+
+    this.powersElement = this.shadowRoot.querySelector('.powers');
+    console.log(exampleMonster.powers);
+    exampleMonster.powers.forEach((power) => {
+      let rowDiv = document.createElement('div');
+      rowDiv.classList.add('row');
+      let cardDiv = document.createElement('div');
+      cardDiv.classList.add('card');
+      let cardHeaderDiv = document.createElement('div');
+      cardHeaderDiv.classList.add('card-header');
+      cardHeaderDiv.innerHTML = `${power.name}`;
+      rowDiv.appendChild(cardDiv);
+      cardDiv.appendChild(cardHeaderDiv);
+      this.powersElement.appendChild(rowDiv);
+    });
   }
 
   capitalizeFirstLetter(string) {
