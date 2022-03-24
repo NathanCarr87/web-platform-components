@@ -33,21 +33,25 @@ class MonsterCardHeader extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(
-      template.content.cloneNode(true)
-    );
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   set data(value) {
     this.nameElement.innerHTML = value.name;
+
     this.levelElement.innerHTML = `Level ${
       value.level
     } ${this.capitalizeFirstLetter(value.role)}`;
+
+    const keywords = value.keywords.map(
+      (key) => '(' + this.capitalizeFirstLetter(key) + ')'
+    );
     this.sizeElement.innerHTML = `${this.capitalizeFirstLetter(
       value.size
     )} ${this.capitalizeFirstLetter(value.origin)} ${this.capitalizeFirstLetter(
       value.type
-    )}`;
+    )} ${keywords}`;
+
     this.xpElement.innerHTML = `XP: ${value.experiencePoints}`;
   }
 
@@ -61,9 +65,11 @@ class MonsterCardHeader extends HTMLElement {
     this.sizeElement = this.shadowRoot.querySelector('.size');
     this.xpElement = this.shadowRoot.querySelector('.xp');
   }
-
   capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    let response =
+      string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    response = response.includes('_') ? response.replace('_', ' ') : response;
+    return response;
   }
 }
 window.customElements.define('monster-card-header', MonsterCardHeader);

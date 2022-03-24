@@ -37,6 +37,814 @@
       // document.querySelector('login-box').firebaseAuth = auth;
       // document.querySelector('login-box').signInWithEmailAndPassword =
       //   signInWithEmailAndPassword;
+
+      // monster-card
+      window.addEventListener('DOMContentLoaded', (event) => {
+        console.log('DOM fully loaded and parsed');
+
+        document.querySelector('.atropal').data = {
+          name: 'Atropal',
+          level: 28,
+          role: 'ELITE_BRUTE',
+          size: 'LARGE',
+          origin: 'IMMORTAL',
+          type: 'MAGICAL_BEAST',
+          keywords: ['UNDEAD'],
+          experiencePoints: '26000',
+          senses: ['DARKVISION'],
+          initiative: 18,
+          aura: {
+            name: 'Shroud of Death',
+            keyword: 'Necrotic',
+            range: 5,
+            description:
+              "at the beginning of the atropal's turn, undead allies within the aura regain 20 hit points, and living creatures in the auro take 10 necrotic damage. Radiant damage to the atropal ends its shroud of death. The atropal can resore the aura as a minor action.",
+          },
+          hitPoints: 634,
+          bloodied: 317,
+          regeneration: [],
+          armorClass: 42,
+          fortitude: 42,
+          reflex: 37,
+          will: 40,
+          immune: ['DISEASE', 'NECROTIC', 'POISON'],
+          resist: [],
+          vulnerable: [
+            {
+              type: 'RADIANT',
+              amount: 10,
+            },
+          ],
+          savingThrows: 2,
+          speed: {
+            value: 0,
+            swim: 0,
+            fly: 9,
+            overLand: 0,
+            hover: true,
+          },
+          actionPoints: 1,
+          alignment: 'EVIL',
+          languages: {
+            languages: ['SUPERNAL'],
+            type: '',
+            range: 0,
+          },
+          equipment: [],
+          skills: [
+            {
+              name: 'INSIGHT',
+              score: 25,
+            },
+            {
+              name: 'PERCEPTION',
+              score: 20,
+            },
+            {
+              name: 'RELIGION',
+              score: 19,
+            },
+          ],
+          healingSurges: 1,
+          abilityScores: {
+            strength: {
+              score: 30,
+              modifier: 24,
+            },
+            dexterity: {
+              score: 18,
+              modifier: 18,
+            },
+            wisdom: {
+              score: 22,
+              modifier: 20,
+            },
+            constitution: {
+              score: 27,
+              modifier: 22,
+            },
+            intelligence: {
+              score: 10,
+              modifier: 14,
+            },
+            charisma: {
+              score: 20,
+              modifier: 19,
+            },
+          },
+          powers: [
+            {
+              type: 'MELEE_BASIC_ATTACK',
+              name: 'Necrotizing Touch',
+              action: 'STANDARD',
+              actionTrigger: '',
+              recharge: 'AT_WILL',
+              keywords: ['NECROTIC'],
+              reach: 2,
+              range: 0,
+              area: {
+                range: 0,
+                within: 0,
+              },
+              targets: '',
+              attackBonus: 29,
+              targetDefense: 'REFLEX',
+              effect: '2d10 + 10 damage',
+              miss: '',
+              afterEffect:
+                'and the target takes ongoing 15 necrotic damage and a -2 penalty to attack rolls, and the target losees any resistance or immunity to necrotic damage (save ends all).',
+            },
+            {
+              type: 'CLOSE_ATTACK',
+              name: 'Atropos Burst',
+              action: 'STANDARD',
+              actionTrigger:
+                "recharges when a living creature drops to 0 hit points withing the atropal's aura",
+              recharge: 'ENCOUNTER',
+              keywords: ['NECROTIC'],
+              reach: 1,
+              range: 0,
+              area: {
+                range: 5,
+                within: 0,
+              },
+              targets: '',
+              attackBonus: 27,
+              targetDefense: 'REFLEX',
+              effect: '4d8 + 5 necrotic damage',
+              miss: '',
+              afterEffect:
+                'and the target loses 1 healing surge. The atropal gains 1 action point if it hits any creatures with atropos burst.',
+            },
+          ],
+        };
+
+        document.querySelector('.aboleth').data = {
+          name: 'Aboleth lasher',
+          level: 17,
+          role: 'BRUTE',
+          size: 'Large',
+          origin: 'ABERRANT',
+          type: 'MAGICAL BEAST',
+          keywords: ['AQUATIC'],
+          experiencePoints: '1600',
+          senses: ['DARKVISION'],
+          initiative: 11,
+          aura: {
+            name: 'Mucus Haze',
+            keyword: '',
+            range: 5,
+            description:
+              'enemies treat the area withing the aura as difficult terrain.',
+          },
+          hitPoints: 200,
+          bloodied: 100,
+          regeneration: [],
+          armorClass: 29,
+          fortitude: 27,
+          reflex: 25,
+          will: 25,
+          immune: [],
+          resist: [],
+          vulnerable: [],
+          savingThrows: 0,
+          speed: {
+            value: 6,
+            swim: 0,
+            fly: 0,
+            overLand: 0,
+            hover: false,
+          },
+          actionPoints: 0,
+          alignment: 'EVIL',
+          languages: {
+            languages: ['DEEP_SPEECH'],
+            type: 'TELEPATHY',
+            range: 20,
+          },
+          equipment: [],
+          skills: [
+            {
+              name: 'ARCANA',
+              score: 19,
+            },
+            {
+              name: 'DUNGEONEERING',
+              score: 19,
+            },
+            {
+              name: 'INSIGHT',
+              score: 19,
+            },
+            {
+              name: 'PERCEPTION',
+              score: 14,
+            },
+          ],
+          healingSurges: 1,
+          abilityScores: {
+            strength: {
+              score: 26,
+              modifier: 16,
+            },
+            dexterity: {
+              score: 16,
+              modifier: 11,
+            },
+            wisdom: {
+              score: 22,
+              modifier: 14,
+            },
+            constitution: {
+              score: 20,
+              modifier: 13,
+            },
+            intelligence: {
+              score: 23,
+              modifier: 14,
+            },
+            charisma: {
+              score: 17,
+              modifier: 11,
+            },
+          },
+          powers: [
+            {
+              type: 'MELEE_BASIC_ATTACK',
+              name: 'Tentacle',
+              action: 'STANDARD',
+              actionTrigger: '',
+              recharge: 'AT_WILL',
+              keywords: [],
+              reach: 2,
+              range: 0,
+              area: {
+                range: 0,
+                within: 0,
+              },
+              targets: '',
+              attackBonus: 20,
+              targetDefense: 'AC',
+              effect: '2d8 + 8 damage (4d8 + 8 damage against a dazed target)',
+              miss: '',
+              afterEffect: 'and the target is dazed (save ends)',
+            },
+            {
+              type: 'INFO',
+              name: 'Combat Advantage',
+              action: '',
+              actionTrigger: '',
+              recharge: '',
+              keywords: [],
+              reach: 1,
+              range: 0,
+              area: {
+                range: 0,
+                within: 0,
+              },
+              targets: '',
+              attackBonus: 0,
+              targetDefense: '',
+              effect:
+                'An aboleth lasher makes an extra tentacle attack against any enemy it has combat advantage against.',
+              miss: '',
+              afterEffect: '',
+            },
+          ],
+        };
+        document.querySelector('.lich').data = {
+          name: 'Lich (Eladrin Wizard)',
+          level: 24,
+          role: 'ELITE_CONTROLLER',
+          size: 'MEDIUM',
+          origin: 'NATURAL',
+          type: 'HUMANOID',
+          keywords: ['UNDEAD'],
+          experiencePoints: '12100',
+          senses: ['DARKVISION'],
+          initiative: 14,
+          aura: {
+            name: 'Necrotic Aura',
+            keyword: 'NECROTIC',
+            range: 5,
+            description:
+              'any living creature that enters of starts its turn in the aura takes 5 necrotic damage.',
+          },
+          hitPoints: 362,
+          bloodied: 181,
+          regeneration: [
+            {
+              amount: 10,
+              description:
+                "If the lich takes radiant damage, regeneration doesn't function on its next turn.",
+            },
+          ],
+          armorClass: 38,
+          fortitude: 33,
+          reflex: 38,
+          will: 38,
+          immune: ['DISEASE', 'POISON'],
+          resist: [
+            {
+              type: 'NECROTIC',
+              amount: 10,
+            },
+          ],
+          vulnerable: [],
+          savingThrows: 2,
+          speed: {
+            value: 6,
+            swim: 0,
+            fly: 0,
+            overLand: 0,
+            hover: false,
+          },
+          actionPoints: 1,
+          alignment: 'EVIL',
+          languages: {
+            languages: ['COMMON', 'ELVEN'],
+            type: '',
+            range: 0,
+          },
+          equipment: [],
+          skills: [
+            {
+              name: 'ARCANA',
+              score: 24,
+            },
+            {
+              name: 'PERCEPTION',
+              score: 14,
+            },
+            {
+              name: 'INSIGHT',
+              score: 19,
+            },
+            {
+              name: 'HISTORY',
+              score: 24,
+            },
+          ],
+          healingSurges: 1,
+          abilityScores: {
+            strength: {
+              score: 12,
+              modifier: 13,
+            },
+            dexterity: {
+              score: 15,
+              modifier: 14,
+            },
+            wisdom: {
+              score: 15,
+              modifier: 14,
+            },
+            constitution: {
+              score: 18,
+              modifier: 16,
+            },
+            intelligence: {
+              score: 25,
+              modifier: 19,
+            },
+            charisma: {
+              score: 21,
+              modifier: 17,
+            },
+          },
+          powers: [
+            {
+              type: 'RANGED_BASIC_ATTACK',
+              name: 'Shadow Ray',
+              action: 'STANDARD',
+              actionTrigger: '',
+              recharge: 'AT_WILL',
+              keywords: ['NECROTIC'],
+              reach: 1,
+              range: 20,
+              area: {
+                range: 0,
+                within: 0,
+              },
+              targets: '',
+              attackBonus: 28,
+              targetDefense: 'REFLEX',
+              effect: '3d8 +7 necrotic damage',
+              miss: '',
+              afterEffect: '',
+            },
+            {
+              type: 'RANGED_ATTACK',
+              name: 'Necrotic Orb',
+              action: 'STANDARD',
+              actionTrigger: '',
+              recharge: 'RECHARGE_5_6',
+              keywords: ['NECROTIC'],
+              reach: 1,
+              range: 20,
+              area: {
+                range: 0,
+                within: 0,
+              },
+              targets: '',
+              attackBonus: 28,
+              targetDefense: 'FORTITUDE',
+              effect:
+                "3d8 +7 necrotic damage, and the target is stunned until the end of the lich's next turn",
+              miss: '',
+              afterEffect: '',
+            },
+            {
+              type: 'AREA_ATTACK',
+              name: 'Entropic Pulse',
+              action: 'STANDARD',
+              actionTrigger: '',
+              recharge: 'RECHARGE_5_6',
+              keywords: ['NECROTIC'],
+              reach: 1,
+              range: 20,
+              area: {
+                range: 2,
+                within: 20,
+              },
+              targets: '',
+              attackBonus: 28,
+              targetDefense: 'REFLEX',
+              effect: '6d6 +7 necrotic damage',
+              miss: '',
+              afterEffect: '',
+            },
+            {
+              type: 'INFO',
+              name: 'Indestructible',
+              action: '',
+              actionTrigger: '',
+              recharge: '',
+              keywords: [],
+              reach: 1,
+              range: 0,
+              area: {
+                range: 0,
+                within: 0,
+              },
+              targets: '',
+              attackBonus: 0,
+              targetDefense: '',
+              effect:
+                'When a lich is reduced to 0 hit points, its body and possessions crumble into dust, but it is not destroyed. It reappears (along with its possessions) in 1d10 days withing 1 square of its phylactery, unless the phylactery is also found and destroyed.',
+              miss: '',
+              afterEffect: '',
+            },
+            {
+              type: 'HEALING',
+              name: 'Second Wind',
+              action: 'STANDARD',
+              actionTrigger: '',
+              recharge: 'ENCOUTER',
+              keywords: ['HEALING'],
+              reach: 1,
+              range: 0,
+              area: {
+                range: 0,
+                within: 0,
+              },
+              targets: '',
+              attackBonus: 0,
+              targetDefense: '',
+              effect:
+                'The lich spends a healing surge and regains 90 hit points. The lich gains a +2 bonus to all defenses until the start of its next turn.',
+              miss: '',
+              afterEffect: '',
+            },
+          ],
+        };
+        // document.querySelector('.goblin').data = {
+        //   name: 'Goblin Blackblade',
+        //   level: 1,
+        //   role: 'LURKER',
+        //   size: 'SMALL',
+        //   origin: 'NATURAL',
+        //   type: 'HUMANOID',
+        //   keywords: [],
+        //   experiencePoints: '100',
+        //   senses: ['LOW_LIGHT VISION'],
+        //   initiative: 7,
+        //   aura: '',
+        //   hitPoints: 25,
+        //   bloodied: 12,
+        //   armorClass: 16,
+        //   fortitude: 12,
+        //   reflex: 14,
+        //   will: 11,
+        //   immunities: [],
+        //   resistance: [],
+        //   vulnerable: [],
+        //   savingThrows: 0,
+        //   speed: {
+        //     value: 6,
+        //     swim: 0,
+        //     fly: 0,
+        //     overLand: 0,
+        //     hover: false,
+        //   },
+        //   actionPoints: 0,
+        //   alignment: 'EVIL',
+        //   languages: {
+        //     languages: ['COMMON', 'GOBLIN'],
+        //     type: '',
+        //     range: 0,
+        //   },
+        //   equipment: ['leather armor', 'short sword'],
+        //   skills: [
+        //     {
+        //       name: 'STEALTH',
+        //       score: 10,
+        //     },
+        //     {
+        //       name: 'PERCEPTION',
+        //       score: 1,
+        //     },
+        //     {
+        //       name: 'THIEVERY',
+        //       score: 10,
+        //     },
+        //   ],
+        //   healingSurges: 1,
+        //   abilityScores: {
+        //     strength: {
+        //       score: 14,
+        //       modifier: 2,
+        //     },
+        //     dexterity: {
+        //       score: 17,
+        //       modifier: 3,
+        //     },
+        //     wisdom: {
+        //       score: 12,
+        //       modifier: 1,
+        //     },
+        //     constitution: {
+        //       score: 13,
+        //       modifier: 1,
+        //     },
+        //     intelligence: {
+        //       score: 8,
+        //       modifier: -1,
+        //     },
+        //     charisma: {
+        //       score: 8,
+        //       modifier: -1,
+        //     },
+        //   },
+        //   powers: [
+        //     {
+        //       type: 'MELEE_BASIC_ATTACK',
+        //       name: 'Short Sword',
+        //       action: 'STANDARD',
+        //       actionTrigger: '',
+        //       recharge: 'AT_WILL',
+        //       keywords: ['WEAPON'],
+        //       reach: 1,
+        //       range: 0,
+        //       area: {
+        //         range: 0,
+        //         within: 0,
+        //       },
+        //       targets: '',
+        //       attackBonus: 5,
+        //       targetDefense: 'AC',
+        //       effect: '1d6 + 2 damage',
+        //       miss: '',
+        //       afterEffect: '',
+        //     },
+        //     {
+        //       type: 'INFO',
+        //       name: 'Combat Advantage',
+        //       action: '',
+        //       actionTrigger: '',
+        //       recharge: '',
+        //       keywords: [],
+        //       reach: 1,
+        //       range: 0,
+        //       area: {
+        //         range: 0,
+        //         within: 0,
+        //       },
+        //       targets: '',
+        //       attackBonus: 0,
+        //       targetDefense: '',
+        //       effect:
+        //         'The goblin blackblade deals an extra 1d6 damage against any target it has combat advantage against.',
+        //       miss: '',
+        //       afterEffect: '',
+        //     },
+        //     {
+        //       type: 'INFO',
+        //       name: 'Goblin Tactics',
+        //       action: 'IMMEDIATE_REACTION',
+        //       actionTrigger: 'When missed by a melee attack',
+        //       recharge: 'AT_WILL',
+        //       keywords: [],
+        //       reach: 1,
+        //       range: 0,
+        //       area: {
+        //         range: 0,
+        //         within: 0,
+        //       },
+        //       targets: '',
+        //       attackBonus: 0,
+        //       targetDefense: '',
+        //       effect: 'The goblin shifts 1 square',
+        //       miss: '',
+        //       afterEffect: '',
+        //     },
+        //     {
+        //       type: 'INFO',
+        //       name: 'Sneaky',
+        //       action: '',
+        //       actionTrigger: '',
+        //       recharge: '',
+        //       keywords: [],
+        //       reach: 1,
+        //       range: 0,
+        //       area: {
+        //         range: 0,
+        //         within: 0,
+        //       },
+        //       targets: '',
+        //       attackBonus: 0,
+        //       targetDefense: '',
+        //       effect:
+        //         "When shifting, a goblin blackblade can move into a space occupied by an ally of its level or lower. The ally shifts into the blackblade's previous space as a free action.",
+        //       miss: '',
+        //       afterEffect: '',
+        //     },
+        //   ],
+        // };
+        document.querySelector('.goblin').data = {
+          name: 'Goblin Blackblade',
+          level: 1,
+          role: 'LURKER',
+          size: 'SMALL',
+          origin: 'NATURAL',
+          type: 'HUMANOID',
+          keywords: [],
+          experiencePoints: '100',
+          senses: ['LOW_LIGHT VISION'],
+          initiative: 7,
+          aura: '',
+          hitPoints: 25,
+          bloodied: 12,
+          armorClass: 16,
+          fortitude: 12,
+          reflex: 14,
+          will: 11,
+          immunities: [],
+          resistance: [],
+          vulnerable: [],
+          savingThrows: 0,
+          speed: {
+            value: 6,
+            swim: 0,
+            fly: 0,
+            overLand: 0,
+            hover: false,
+          },
+          actionPoints: 0,
+          alignment: 'EVIL',
+          languages: {
+            languages: ['COMMON', 'GOBLIN'],
+            type: '',
+            range: 0,
+          },
+          equipment: ['leather armor', 'short sword'],
+          skills: [
+            {
+              name: 'STEALTH',
+              score: 10,
+            },
+            {
+              name: 'PERCEPTION',
+              score: 1,
+            },
+            {
+              name: 'THIEVERY',
+              score: 10,
+            },
+          ],
+          healingSurges: 1,
+          abilityScores: {
+            strength: {
+              score: 14,
+              modifier: 2,
+            },
+            dexterity: {
+              score: 17,
+              modifier: 3,
+            },
+            wisdom: {
+              score: 12,
+              modifier: 1,
+            },
+            constitution: {
+              score: 13,
+              modifier: 1,
+            },
+            intelligence: {
+              score: 8,
+              modifier: -1,
+            },
+            charisma: {
+              score: 8,
+              modifier: -1,
+            },
+          },
+          powers: [
+            {
+              type: 'MELEE_BASIC_ATTACK',
+              name: 'Short Sword',
+              action: 'STANDARD',
+              actionTrigger: '',
+              recharge: 'AT_WILL',
+              keywords: ['WEAPON'],
+              reach: 1,
+              range: 0,
+              area: {
+                range: 0,
+                within: 0,
+              },
+              targets: '',
+              attackBonus: 5,
+              targetDefense: 'AC',
+              effect: '1d6 + 2 damage',
+              miss: '',
+              afterEffect: '',
+            },
+            {
+              type: 'INFO',
+              name: 'Combat Advantage',
+              action: '',
+              actionTrigger: '',
+              recharge: '',
+              keywords: [],
+              reach: 1,
+              range: 0,
+              area: {
+                range: 0,
+                within: 0,
+              },
+              targets: '',
+              attackBonus: 0,
+              targetDefense: '',
+              effect:
+                'The goblin blackblade deals an extra 1d6 damage against any target it has combat advantage against.',
+              miss: '',
+              afterEffect: '',
+            },
+            {
+              type: 'INFO',
+              name: 'Goblin Tactics',
+              action: 'IMMEDIATE_REACTION',
+              actionTrigger: 'When missed by a melee attack',
+              recharge: 'AT_WILL',
+              keywords: [],
+              reach: 1,
+              range: 0,
+              area: {
+                range: 0,
+                within: 0,
+              },
+              targets: '',
+              attackBonus: 0,
+              targetDefense: '',
+              effect: 'The goblin shifts 1 square',
+              miss: '',
+              afterEffect: '',
+            },
+            {
+              type: 'INFO',
+              name: 'Sneaky',
+              action: '',
+              actionTrigger: '',
+              recharge: '',
+              keywords: [],
+              reach: 1,
+              range: 0,
+              area: {
+                range: 0,
+                within: 0,
+              },
+              targets: '',
+              attackBonus: 0,
+              targetDefense: '',
+              effect:
+                "When shifting, a goblin blackblade can move into a space occupied by an ally of its level or lower. The ally shifts into the blackblade's previous space as a free action.",
+              miss: '',
+              afterEffect: '',
+            },
+          ],
+        };
+      });
     </script>
     <script type="module" src="script.js"></script>
     <script type="module" src="login-box.js"></script>
@@ -49,12 +857,19 @@
       type="module"
       src="monster-card/components/monster-card-body.js"
     ></script>
-    <script type="module" src="monster-card/monster-card.js"></script>
+    <script
+      type="module"
+      src="monster-card/components/monster-card-footer.js"
+    ></script>
+    <script src="monster-card/monster-card.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
   </head>
   <body>
     <div style="display: flex">
-      <monster-card></monster-card>
+      <monster-card class="atropal"></monster-card>
+      <monster-card class="aboleth"></monster-card>
+      <monster-card class="lich"></monster-card>
+      <monster-card class="goblin"></monster-card>
       <!-- <login-box></login-box>
 
       <signup-box></signup-box> -->
