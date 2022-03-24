@@ -1,5 +1,5 @@
-const loginBoxTemplate = document.createElement('template');
-loginBoxTemplate.innerHTML = `
+const template = document.createElement('template');
+template.innerHTML = `
 <style>
 .container {
   padding: 1rem;
@@ -49,7 +49,7 @@ class LoginBox extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(loginBoxTemplate.content.cloneNode(true));
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   _firebaseAuth;
