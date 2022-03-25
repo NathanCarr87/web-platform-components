@@ -130,7 +130,11 @@ class MonsterCardBody extends HTMLElement {
       )} `;
     }
 
-    this.armorClassElement.innerHTML = `<strong>AC</strong> ${value.armorClass}
+    this.armorClassElement.innerHTML = `<strong>AC</strong> ${
+      value.armorClass.value
+    } ${
+      value.armorClass.description ? `( ${value.armorClass.description})` : ''
+    }
     <strong>Fortitude</strong> ${value.fortitude}
     <strong>Reflex</strong> ${value.reflex}
     <strong>Will</strong> ${value.will}
@@ -157,8 +161,10 @@ class MonsterCardBody extends HTMLElement {
         .replace(',', ', ')}`;
     }
 
-    if (value.savingThrows > 0) {
-      this.savesElement.innerHTML = `<strong>Saving Throws</strong> +${value.savingThrows}`;
+    if (value.savingThrows.value > 0) {
+      this.savesElement.innerHTML = `<strong>Saving Throws</strong> +${
+        value.savingThrows.value
+      } ${value.savingThrows.keyword ? `(${value.savingThrows.keyword})` : ''}`;
     }
 
     this.speedElement.innerHTML = `<strong>Speed</strong> ${
